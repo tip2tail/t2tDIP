@@ -45,15 +45,23 @@
             this.timerUpdate = new System.Windows.Forms.Timer(this.components);
             this.txtAuthCode = new System.Windows.Forms.TextBox();
             this.txtURL = new System.Windows.Forms.TextBox();
+            this.menuPopup = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateNowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.menuPopup.SuspendLayout();
             this.SuspendLayout();
             // 
             // notifyIcon
             // 
+            this.notifyIcon.ContextMenuStrip = this.menuPopup;
             this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
             this.notifyIcon.Text = "notifyIcon";
             this.notifyIcon.Visible = true;
+            this.notifyIcon.DoubleClick += new System.EventHandler(this.BtnUpdateNow_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -148,8 +156,9 @@
             this.btnLogs.Name = "btnLogs";
             this.btnLogs.Size = new System.Drawing.Size(75, 23);
             this.btnLogs.TabIndex = 3;
-            this.btnLogs.Text = "Logs...";
+            this.btnLogs.Text = "Log File...";
             this.btnLogs.UseVisualStyleBackColor = true;
+            this.btnLogs.Click += new System.EventHandler(this.BtnLogs_Click);
             // 
             // btnGitHub
             // 
@@ -181,6 +190,10 @@
             this.btnUpdateNow.UseVisualStyleBackColor = true;
             this.btnUpdateNow.Click += new System.EventHandler(this.BtnUpdateNow_Click);
             // 
+            // timerUpdate
+            // 
+            this.timerUpdate.Tick += new System.EventHandler(this.TimerUpdate_Tick);
+            // 
             // txtAuthCode
             // 
             this.txtAuthCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -204,6 +217,43 @@
             this.txtURL.TabIndex = 3;
             this.txtURL.Text = global::t2tDIP.Properties.Settings.Default.UpdateServiceURL;
             // 
+            // menuPopup
+            // 
+            this.menuPopup.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.updateNowToolStripMenuItem,
+            this.settingsToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.exitToolStripMenuItem});
+            this.menuPopup.Name = "menuPopup";
+            this.menuPopup.Size = new System.Drawing.Size(181, 98);
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.settingsToolStripMenuItem.Text = "Settings...";
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.SettingsToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
+            // 
+            // updateNowToolStripMenuItem
+            // 
+            this.updateNowToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.updateNowToolStripMenuItem.Name = "updateNowToolStripMenuItem";
+            this.updateNowToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.updateNowToolStripMenuItem.Text = "Update Now";
+            this.updateNowToolStripMenuItem.Click += new System.EventHandler(this.BtnUpdateNow_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -222,10 +272,13 @@
             this.MinimizeBox = false;
             this.Name = "MainForm";
             this.Text = "t2tDIP";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.menuPopup.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -247,6 +300,11 @@
         private System.Windows.Forms.Button btnNewAuth;
         private System.Windows.Forms.Button btnUpdateNow;
         private System.Windows.Forms.Timer timerUpdate;
+        private System.Windows.Forms.ContextMenuStrip menuPopup;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem updateNowToolStripMenuItem;
     }
 }
 

@@ -13,6 +13,11 @@ $outcome->Code = 500;
 
 do {
 
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        $outcome->Message = 'HTTP request was not of type POST';
+        break;
+    }
+
     if (!array_key_exists('AuthCode', $safePost)) {
         $outcome->Message = 'Auth code was missing from POST data';
         break;
