@@ -32,12 +32,12 @@ function validateAuthCode($code) {
     return false;
 }
 
-function redirectToIp() {
+function redirectToIp($port = "80") {
     $ip = loadIp();
     if (filter_var($ip, FILTER_VALIDATE_IP) === false) {
         http_response_code(500);
         echo "ERROR - No redirection IP found";
     } else {
-        header("Location: $ip\r\n");
+        header("Location: http://$ip:$port\r\n");
     }
 }
